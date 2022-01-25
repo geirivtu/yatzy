@@ -1,9 +1,14 @@
 from random import random
 from random import randint
 
-#generating 10 random integers between 1 and 6. 
+#Defining one die and creating a function for rolling it. 
 
-for _ in range (10):
-    value = randint(1,6)
-    print value
+class Die:
+    def __init__(self,nr):
+        self._nr=nr
 
+    def roll(self):
+        self._nr = randint(1,6)
+
+    def returnNr(self):
+        return self._nr
