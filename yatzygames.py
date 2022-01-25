@@ -1,4 +1,37 @@
+from pickle import APPEND
 from dice import Die
+
+#I will create a "game" for each line in yatzy and test them as I go.
+#The upper section will be the same for all, except the number, therefore I create one game for all.
+def upperSection(gameDice,number):
+    for dice in gameDice:
+        dice.roll()
+    results=[]
+
+    #We have two more chances to get more 1's and all 1's should be added to results. 
+    for dice in gameDice:
+        if dice.returnNo()==number:
+            results.append(dice.returnNo())
+            gameDice.remove(dice)
+    print(results)
+
+    #1 pair
+
+    #2 pairs
+
+    #3 of a kind
+
+    #4 of a kind
+
+    #Low straight
+
+    #High Straight
+
+    #Full House
+
+    #Chance
+
+    #Yatzy/Yahtsee
 
 def yatzy():
     #create a list of five dice, all are set to value 1. 
@@ -8,40 +41,11 @@ def yatzy():
     for dice in gameDice:
         dice.roll()
 
-    #print("First die: "+str(gameDice[0].returnNr())+" Second die: "+str(gameDice[1].returnNr())+" Third die: "+str(gameDice[2].returnNr())+" Forth die: "+str(gameDice[3].returnNr())+" Fifth die: "+str(gameDice[4].returnNr()))
+    #print("First die: "+str(gameDice[0].returnNo())+" Second die: "+str(gameDice[1].returnNo())+" Third die: "+str(gameDice[2].returnNo())+" Forth die: "+str(gameDice[3].returnNo())+" Fifth die: "+str(gameDice[4].returnNo()))
 
-#I will create a "game" for each line in yatzy and test them as I go. 
+    #First game:
+    upperSection(gameDice,1)
 
-#1's
-
-
-#2's
-
-#3's
-
-#4's
-
-#5's
-
-#6's
-
-#1 pair
-
-#2 pairs
-
-#3 of a kind
-
-#4 of a kind
-
-#Low straight
-
-#High Straight
-
-#Full House
-
-#Chance
-
-#Yatzy/Yahtsee
 
 #To run the main program. 
 yatzy()
