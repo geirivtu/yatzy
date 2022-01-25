@@ -4,19 +4,24 @@ from dice import Die
 #I will create a "game" for each line in yatzy and test them as I go.
 #The upper section will be the same for all, except the number, therefore I create one game for all.
 def upperSection(gameDice,number):
-    gameDice=gameDice
-    for dice in gameDice:
-        dice.roll()
     results=[]
 
-    #We have two more chances to get more 1's and all 1's should be added to results. 
     for dice in gameDice:
+        dice.roll()
         if dice.returnNo()==number:
             results.append(dice.returnNo())
             gameDice.remove(dice)
 
-    #Last time to get those numbers. 
+
+    #We have two more chances to get more 1's and all 1's should be added to results. 
     for dice in gameDice:
+        dice.roll()
+        if dice.returnNo()==number:
+            results.append(dice.returnNo())
+            gameDice.remove(dice)
+
+    for dice in gameDice:
+        dice.roll()
         if dice.returnNo()==number:
             results.append(dice.returnNo())
             gameDice.remove(dice)
