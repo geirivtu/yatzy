@@ -12,3 +12,10 @@ class Die:
 
     def returnNo(self):
         return self._no
+    
+    def __str__(self):
+        return str(self._no)
+
+if __name__ == "__main__":
+    die=Die()
+    print(die)

@@ -57,9 +57,9 @@ def twopairs(gameDice):
                 results.extend(sortedvalues[i:i+2])
                 gameDice=gameDice[:-2] #everything except the two last elements. 
                 break
-    
-    print(sortedvalues)
-    print(results)
+    #Works with five dice.
+    points=sum(results)
+    return points
 
 # 3 of a kind, 4 of a kind, Low straight, High Straight, Full House, Chance, Yatzy/Yahtsee
 
@@ -81,5 +81,5 @@ def yatzy():
     #twopairs(gameDice)
     #gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
-
-yatzy()
+if __name__ == "__main__":
+    yatzy()
