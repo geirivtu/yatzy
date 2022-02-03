@@ -1,5 +1,12 @@
 from dice import Die
 
+def rolldice(gameDice):
+    values=[]
+    for dice in gameDice:
+        dice.roll()
+        values.append(dice.returnNo())
+    return values
+
 #I will create a "game" for each line in yatzy and test them as I go.
 #The upper section will be the same for all, except the number, therefore I create one game for all.
 def upperSection(gameDice,number):
@@ -20,10 +27,7 @@ def onepair(gameDice):
     results=[]
     #Sort the values of the dice. Compare two dice together from the top. If they are the same, remove them from gameDice and put them into results list. 
     for i in range(3):
-        values=[]
-        for dice in gameDice:
-            dice.roll()
-            values.append(dice.returnNo())
+        values=rolldice(gameDice)
         sortedvalues=sorted(values,reverse=True)
         for i in range(len(sortedvalues)-1):
             if sortedvalues[i]==sortedvalues[i+1]:
@@ -47,10 +51,7 @@ def twopairs(gameDice):
     results=[]
 
     for i in range(3):
-        values=[]
-        for dice in gameDice:
-            dice.roll()
-            values.append(dice.returnNo())
+        values=rolldice(gameDice)
         sortedvalues=sorted(values,reverse=True)
         for i in range(len(sortedvalues)-1):
             if sortedvalues[i]==sortedvalues[i+1]:
@@ -69,10 +70,7 @@ def threeofakind(gameDice):
     results=[]
     #Sort the values of the dice. Compare two dice together from the top. If they are the same, remove them from gameDice and put them into results list. 
     for i in range(3):
-        values=[]
-        for dice in gameDice:
-            dice.roll()
-            values.append(dice.returnNo())
+        values=rolldice(gameDice)
         sortedvalues=sorted(values,reverse=True)
         for i in range(len(sortedvalues)-2):
             if sortedvalues[i]==sortedvalues[i+1] and sortedvalues[i]==sortedvalues[i+2]:
@@ -90,10 +88,7 @@ def fourofakind(gameDice):
     results=[]
     #Sort the values of the dice. Compare two dice together from the top. If they are the same, remove them from gameDice and put them into results list. 
     for i in range(3):
-        values=[]
-        for dice in gameDice:
-            dice.roll()
-            values.append(dice.returnNo())
+        values=rolldice(gameDice)
         sortedvalues=sorted(values,reverse=True)
         for i in range(len(sortedvalues)-3):
             if sortedvalues[i]==sortedvalues[i+1] and sortedvalues[i]==sortedvalues[i+2] and sortedvalues[i]==sortedvalues[i+3]:
@@ -107,7 +102,38 @@ def fourofakind(gameDice):
     return points
 
 # Low straight
+#Want all of them to be different and you want to have a die with value 1.
+def lowstraight(gameDice):
+    results=[]
+    #Sort the values of the dice. Compare two dice together from the top. If they are the same, remove them from gameDice and put them into results list. 
+    for i in range(3):
+        values=rolldice(gameDice)
+        sortedvalues=sorted(values)
+        for value in sortedvalues:
+            if value not in results and value!=6:
+                results.append(value)
+                print(results)
+    points=sum(results)
+    if points<15:
+        points=0
+    return points
+
 # High Straight
+def highstraight(gameDice):
+    results=[]
+    #Sort the values of the dice. Compare two dice together from the top. If they are the same, remove them from gameDice and put them into results list. 
+    for i in range(3):
+        values=rolldice(gameDice)
+        sortedvalues=sorted(values)
+        for value in sortedvalues:
+            if value not in results and value!=1:
+                results.append(value)
+                print(results)
+    points=sum(results)
+    if points<20:
+        points=0
+    return points
+
 # Full House
 # Chance
 # Yatzy/Yahtsee
@@ -141,7 +167,10 @@ def yatzy():
     print(fourOfAKind)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
-
+    #Low Straight:
+    lowStraight=lowstraight(gameDice)
+    print(lowStraight)
+    gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
 if __name__ == "__main__": #This will not be run if yatzygames gets imported to another file. 
     yatzy()
