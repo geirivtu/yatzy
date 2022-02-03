@@ -15,7 +15,7 @@ def upperSection(gameDice,number):
     points=sum(results)
     return points 
 
-#1 pair
+# 1 pair
 def onepair(gameDice):
     results=[]
     #Sort the values of the dice. Compare two dice together from the top. If they are the same, remove them from gameDice and put them into results list. 
@@ -42,10 +42,10 @@ def onepair(gameDice):
         points=0
     return points
 
-#2 pairs
+# 2 pairs
 def twopairs(gameDice):
     results=[]
-    #Sort the values of the dice. Compare two dice together from the top. If they are the same, remove them from gameDice and put them into results list. 
+
     for i in range(3):
         values=[]
         for dice in gameDice:
@@ -57,11 +57,60 @@ def twopairs(gameDice):
                 results.extend(sortedvalues[i:i+2])
                 gameDice=gameDice[:-2] #everything except the two last elements. 
                 break
-    #Works with five dice.
-    points=sum(results)
+
+    if len(results)==4:
+        points=sum(results)
+    else:
+        points=0
     return points
 
-# 3 of a kind, 4 of a kind, Low straight, High Straight, Full House, Chance, Yatzy/Yahtsee
+# 3 of a kind
+def threeofakind(gameDice):
+    results=[]
+    #Sort the values of the dice. Compare two dice together from the top. If they are the same, remove them from gameDice and put them into results list. 
+    for i in range(3):
+        values=[]
+        for dice in gameDice:
+            dice.roll()
+            values.append(dice.returnNo())
+        sortedvalues=sorted(values,reverse=True)
+        for i in range(len(sortedvalues)-2):
+            if sortedvalues[i]==sortedvalues[i+1] and sortedvalues[i]==sortedvalues[i+2]:
+                results.extend(sortedvalues[i:i+3])
+                print(results)
+                points = sum(results)
+                return points
+                break
+            else:
+                points=0
+    return points
+
+# 4 of a kind
+def fourofakind(gameDice):
+    results=[]
+    #Sort the values of the dice. Compare two dice together from the top. If they are the same, remove them from gameDice and put them into results list. 
+    for i in range(3):
+        values=[]
+        for dice in gameDice:
+            dice.roll()
+            values.append(dice.returnNo())
+        sortedvalues=sorted(values,reverse=True)
+        for i in range(len(sortedvalues)-3):
+            if sortedvalues[i]==sortedvalues[i+1] and sortedvalues[i]==sortedvalues[i+2] and sortedvalues[i]==sortedvalues[i+3]:
+                results.extend(sortedvalues[i:i+4])
+                print(results)
+                points = sum(results)
+                return points
+                break
+            else:
+                points=0
+    return points
+
+# Low straight
+# High Straight
+# Full House
+# Chance
+# Yatzy/Yahtsee
 
 def yatzy():
     #create a list of five dice, all are set to value 1. 
@@ -78,8 +127,21 @@ def yatzy():
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #Two pairs:
-    #twopairs(gameDice)
-    #gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
+    twoPairs=twopairs(gameDice)
+    print(twoPairs)
+    gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
-if __name__ == "__main__":
+    #Three of a kind:
+    threeOfAKind=threeofakind(gameDice)
+    print(threeOfAKind)
+    gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
+
+    #Four of a kind:
+    fourOfAKind=fourofakind(gameDice)
+    print(fourOfAKind)
+    gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
+
+
+
+if __name__ == "__main__": #This will not be run if yatzygames gets imported to another file. 
     yatzy()
