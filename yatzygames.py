@@ -112,7 +112,7 @@ def lowstraight(gameDice):
         for value in sortedvalues:
             if value not in results and value!=6:
                 results.append(value)
-                print(results)
+                gameDice=gameDice[:-1]
     points=sum(results)
     if points<15:
         points=0
@@ -128,7 +128,7 @@ def highstraight(gameDice):
         for value in sortedvalues:
             if value not in results and value!=1:
                 results.append(value)
-                print(results)
+                gameDice=gameDice[:-1]
     points=sum(results)
     if points<20:
         points=0
@@ -171,6 +171,10 @@ def yatzy():
     lowStraight=lowstraight(gameDice)
     print(lowStraight)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
+
+    #High Straight:
+    highStraight=highstraight(gameDice)
+    print(highStraight)
 
 if __name__ == "__main__": #This will not be run if yatzygames gets imported to another file. 
     yatzy()
