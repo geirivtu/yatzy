@@ -146,11 +146,26 @@ def fullhouse(gameDice):
     results=[]
     for i in range(3):
         values=rolldice(gameDice)
+        
 
 
 # Chance
 def chance(gameDice):
     results=[]
+    for i in range(3):
+        values=rolldice(gameDice)
+        sortedvalues=sorted(values)
+        print(sortedvalues)
+        save=[6,5]
+        for j in sortedvalues:
+            if j in save:
+                results.append(j)
+                gameDice=gameDice[:-1]
+        print(results)
+        save.append(4-i)
+        save.append(3-i)
+    points=sum(results)
+    return points
 
 # Yatzy/Yahtsee
 def yatzy(gameDice):
@@ -163,37 +178,43 @@ def yatzygame():
 
     #First game:
     ones=upperSection(gameDice,1)
-    print(ones)
+    #print(ones)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #One pair:
     onePair=onepair(gameDice)
-    print(onePair)
+    #print(onePair)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #Two pairs:
     twoPairs=twopairs(gameDice)
-    print(twoPairs)
+    #print(twoPairs)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #Three of a kind:
     threeOfAKind=threeofakind(gameDice)
-    print(threeOfAKind)
+    #print(threeOfAKind)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #Four of a kind:
     fourOfAKind=fourofakind(gameDice)
-    print(fourOfAKind)
+    #print(fourOfAKind)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #Low Straight:
     lowStraight=lowstraight(gameDice)
-    print(lowStraight)
+    #print(lowStraight)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #High Straight:
     highStraight=highstraight(gameDice)
-    print(highStraight)
+    #print(highStraight)
+    gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
+
+    #Chance:
+    Chance=chance(gameDice)
+    print(Chance)
+    gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
 if __name__ == "__main__": #This will not be run if yatzygames gets imported to another file. 
     yatzygame()
