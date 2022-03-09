@@ -1,4 +1,6 @@
+from unittest import result
 from dice import Die
+from hand import Hand
 
 #I will create a "game" for each line in yatzy and test them as I go.
 #The upper section will be the same for all, except the number, therefore I create one game for all.
@@ -12,6 +14,8 @@ def rolldice(gameDice):
 
 def xofakind(gameDice,number): #find X number of a kind, where X can be 2, 3, 4, aso. 
     #Use count()?
+    #rollHand=Hand()
+    #keepHand=Hand()
     results=[]
     for i in range(3):
         values=rolldice(gameDice)
@@ -38,6 +42,21 @@ def upperSection(gameDice,number):
                 gameDice.remove(dice)
     points=sum(results)
     return points 
+
+def upperSectionv2(number):
+    rollinghand=Hand([1,2,3,4,5])
+    resulthand=Hand([])
+    
+    for i in range(3):
+        rollinghand.rolls()
+        for dice in rollinghand:
+            count=0
+            if dice==number:
+                resulthand.append(dice)
+                rollinghand.remove(dice)
+        print(rollinghand)
+        print(resulthand)
+    return resulthand
 
 # 1 pair
 #Should I keep the highest die in results even when it's not a pair? 
@@ -177,44 +196,46 @@ def yatzygame():
     gameDice = [Die(),Die(),Die(),Die(),Die()]
 
     #First game:
-    ones=upperSection(gameDice,1)
+    #ones=upperSection(gameDice,1)
     #print(ones)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #One pair:
-    onePair=onepair(gameDice)
+    #onePair=onepair(gameDice)
     #print(onePair)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #Two pairs:
-    twoPairs=twopairs(gameDice)
+    #twoPairs=twopairs(gameDice)
     #print(twoPairs)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #Three of a kind:
-    threeOfAKind=threeofakind(gameDice)
+    #threeOfAKind=threeofakind(gameDice)
     #print(threeOfAKind)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #Four of a kind:
-    fourOfAKind=fourofakind(gameDice)
+    #fourOfAKind=fourofakind(gameDice)
     #print(fourOfAKind)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #Low Straight:
-    lowStraight=lowstraight(gameDice)
+    #lowStraight=lowstraight(gameDice)
     #print(lowStraight)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #High Straight:
-    highStraight=highstraight(gameDice)
+    #highStraight=highstraight(gameDice)
     #print(highStraight)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
 
     #Chance:
-    Chance=chance(gameDice)
-    print(Chance)
+    #Chance=chance(gameDice)
+    #print(Chance)
     gameDice = [Die(),Die(),Die(),Die(),Die()] #Resetting the dice. 
+
+    upperSectionv2(1)
 
 if __name__ == "__main__": #This will not be run if yatzygames gets imported to another file. 
     yatzygame()
