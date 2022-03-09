@@ -43,21 +43,6 @@ def upperSection(gameDice,number):
     points=sum(results)
     return points 
 
-def upperSectionv2(number):
-    rollinghand=Hand([1,2,3,4,5])
-    resulthand=Hand([])
-    
-    for i in range(3):
-        rollinghand.rolls()
-        for dice in rollinghand:
-            count=0
-            if dice==number:
-                resulthand.append(dice)
-                rollinghand.remove(dice)
-        print(rollinghand)
-        print(resulthand)
-    return resulthand
-
 # 1 pair
 #Should I keep the highest die in results even when it's not a pair? 
 def onepair(gameDice):
